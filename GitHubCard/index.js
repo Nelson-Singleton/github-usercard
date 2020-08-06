@@ -8,17 +8,25 @@ const cardContainer = document.querySelector('.cards')
 
 axios.get("https://api.github.com/users/nelson-singleton")
   .then(response => {
-    const gitData = response.data.message
-    gitData.forEach(singleObj => {
-      const finishedCard = cardMaker(response)
-      cardContainer.appendChild(finishedCard)
+    const gitData = response.data
+    console.log (gitData) //test
+    
+    gitData.forEach(item => {
+      const finishedCard = cardMaker(item)
       
+      cardContainer.appendChild(finishedCard)
+
+        return cardContainer     
     });
+
+    console.log(cardContainer)
+    
     
     
 
   })
   .catch(err => {
+    
     
 
   })
