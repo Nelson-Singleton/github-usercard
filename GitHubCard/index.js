@@ -5,13 +5,15 @@ import axios from 'axios'
     https://api.github.com/users/<your name>
 */
 
+//Selector for the main card container div.
 const cardContainer = document.querySelector('.cards')
+
 
 axios.get("https://api.github.com/users/nelson-singleton")
 .then(response => {
   
     const myData = response.data     
-    cardContainer.appendChild(cardMaker(myData))
+    cardContainer.appendChild(cardMaker(myData)) //adds 
   
      })
   
@@ -122,10 +124,6 @@ function cardMaker(singleObj){
 
   return card
 }
-
-
-
-
 
 /*
   List of LS Instructors Github username's:
