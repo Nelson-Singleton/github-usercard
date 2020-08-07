@@ -4,6 +4,33 @@ import axios from 'axios'
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const cardContainer = document.querySelector('.cards')
+
+axios.get("https://api.github.com/users/nelson-singleton")
+  .then(response => {
+    const gitData = response.data
+    console.log (gitData) //test
+    
+    gitData.forEach(item => {
+      const finishedCard = cardMaker(item)
+      
+      cardContainer.appendChild(finishedCard)
+
+        return cardContainer     
+    });
+
+    console.log(cardContainer)
+    
+    
+    
+
+  })
+  .catch(err => {
+    
+    
+
+  })
+
 
 const cardContainer = document.querySelector('.cards')
 
@@ -69,6 +96,50 @@ const followersArray = [];
       </div>
     </div>
 */
+function cardMaker(singleObj){
+  
+  //select objects
+  const card = document.querySelector('.card')
+  const img = document.querySelector('img')
+  const cardInfo = document.querySelector('.card-info')
+  const name = document.querySelector('.name')
+  const userName = document.querySelector('.username')
+  const location = document.querySelector('p')
+  const profile = document.querySelector('p')
+  const followers = document.querySelector('p')
+  const following = document.querySelector('p')
+  const bio = document.querySelector('p')
+
+  //add classes
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  userName.classList.add('username')
+  
+  //add text, attributes, etc
+  img.src = singleObj.avatar_url
+  name.textContent = singleObj.name
+  userName.textContent = singleObj.login
+  location.textContent = singleObj.location
+  profile.href = singleObj.url
+  followers.textContent = singleObj.followers
+  following.textContent = singleObj.following
+  bio.textContent = singleObj.bio
+
+  //append objects to card and cardInfo
+  card.appendChild(img)
+  card.appendChild(cardInfo)
+  cardInfo.appendChild(name)
+  cardInfo.appendChild(userName)
+  cardInfo.appendChild(location)
+  cardInfo.appendChild(profile)
+  cardInfo.appendChild(followers)
+  cardInfo.appendChild(following)
+  cardInfo.appendChild(bio)
+  
+  return card
+
+}
 
 function cardMaker(singleObj){
   
