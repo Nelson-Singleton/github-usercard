@@ -43,7 +43,22 @@ axios.get("https://api.github.com/users/nelson-singleton")
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ["mphelps1978", "fibonacci85", "ericagirges", "devbeau", "chrisjcorbin"];
+followersArray.forEach(item => {
+  axios.get("https://api.github.com/users/" + item)
+  .then(response => {
+  
+    const myData = response.data     
+    cardContainer.appendChild(cardMaker(myData))
+  
+     })
+  
+     .catch(error => {
+    debugger
+    
+  })
+
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -87,7 +102,6 @@ function cardMaker(singleObj){
   cardInfo.appendChild(pProfile)
   cardInfo.appendChild(pFollowers)
   cardInfo.appendChild(pFollowing)
-  cardInfo.appendChild(pFollowing)
   cardInfo.appendChild(pBio)
 
   //add classes
@@ -98,16 +112,15 @@ function cardMaker(singleObj){
 
   //add text, attributes, etc
   img.src = singleObj.avatar_url  
-  pLocation.textContent = singleObj.location
-  pProfile.href = singleObj.url
-  pFollowers.textContent = singleObj.followers
-  pFollowing.textContent = singleObj.following
+  pLocation.textContent = `Location: ${singleObj.location}`
+  pProfile.href = `Profile: ${singleObj.url}`
+  pFollowers.textContent = `Followers: ${singleObj.followers}`
+  pFollowing.textContent = `Following: ${singleObj.following}`
   pBio.textContent = singleObj.bio
   h3Name.textContent = singleObj.name
   pUsername.textContent = singleObj.login
 
   return card
-
 }
 
 
