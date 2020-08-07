@@ -10,18 +10,12 @@ const cardContainer = document.querySelector('.cards')
 axios.get("https://api.github.com/users/nelson-singleton")
 .then(response => {
   
-    const myData = response.data    
-     
-    
-    const cardFeeder = cardMaker(myData)
-  debugger
-
-    cardContainer.appendChild
-  debugger
-
-
+    const myData = response.data     
+    cardContainer.appendChild(cardMaker(myData))
+  
      })
-  .catch(error => {
+  
+     .catch(error => {
     debugger
     
   })
@@ -72,59 +66,45 @@ const followersArray = [];
 
 function cardMaker(singleObj){
   
-  //select objects
-  
-  const cardDiv = document.querySelector('.card')
-  const cardDiv2 = document.querySelector('.card-info')
-  const name = document.querySelector('.name')
-  const userName = document.querySelector('.username')
-  const img = document.querySelector('img')  
-  const location = document.querySelector('p')
-  const profile = document.querySelector('p')
-  const followers = document.querySelector('p')
-  const following = document.querySelector('p')
-  const bio = document.querySelector('p')
+ //create elements
+  const card = document.createElement('div')
+  const img = document.createElement('img')
+  const cardInfo = document.createElement('div')
+  const h3Name = document.createElement('h3')
+  const pUsername = document.createElement('p')
+  const pLocation = document.createElement('p')
+  const pProfile = document.createElement('p')
+  const pFollowers = document.createElement('p')
+  const pFollowing = document.createElement('p')
+  const pBio = document.createElement('p')
 
+  //append objects to card and cardInfo
+  card.appendChild(img)  
+  card.appendChild(cardInfo) 
+  cardInfo.appendChild(h3Name)
+  cardInfo.appendChild(pUsername)
+  cardInfo.appendChild(pLocation)
+  cardInfo.appendChild(pProfile)
+  cardInfo.appendChild(pFollowers)
+  cardInfo.appendChild(pFollowing)
+  cardInfo.appendChild(pFollowing)
+  cardInfo.appendChild(pBio)
+
+  //add classes
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  h3Name.classList.add('name')
+  pUsername.classList.add('username')
 
   //add text, attributes, etc
-  img.src = singleObj.avatar_url
-  
-  location.textContent = singleObj.location
-  profile.href = singleObj.url
-  followers.textContent = singleObj.followers
-  following.textContent = singleObj.following
-  bio.textContent = singleObj.bio
-  debugger
-  name.innerHTML = singleObj.name
-  userName.textContent = singleObj.login
-
-  debugger
-  //append objects to card and cardInfo
-  cardDiv.appendChild(img)  
-  cardDiv.appendChild(cardDiv2) 
-  cardInfo.appendChild(name)
-  cardInfo.appendChild(userName)
-  cardInfo.appendChild(location)
-  cardInfo.appendChild(profile)
-  cardInfo.appendChild(followers)
-  cardInfo.appendChild(following)
-  cardInfo.appendChild(bio)
-   
-  console.log(card)
-debugger
-
-  
-debugger
-  
-  
-  debugger
-
-  
-  //add classes
-  cardDiv.classList.add('card')
-  cardInfo.classList.add('card-info')
-  name.classList.add('name')
-  userName.classList.add('username')
+  img.src = singleObj.avatar_url  
+  pLocation.textContent = singleObj.location
+  pProfile.href = singleObj.url
+  pFollowers.textContent = singleObj.followers
+  pFollowing.textContent = singleObj.following
+  pBio.textContent = singleObj.bio
+  h3Name.textContent = singleObj.name
+  pUsername.textContent = singleObj.login
 
   return card
 
